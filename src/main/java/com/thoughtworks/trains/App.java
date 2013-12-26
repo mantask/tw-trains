@@ -79,7 +79,7 @@ public class App {
 			Set<String> routes10 = railway.walk('C', 'C', acc10);
 			println(routes10.size());
 			
-		} catch (IllegalArgumentException e) {
+		} catch (Exception e) {
 			System.err.println(e.getMessage());
 			System.exit(-1);
 		}

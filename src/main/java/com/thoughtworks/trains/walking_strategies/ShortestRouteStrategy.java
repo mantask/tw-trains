@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import com.thoughtworks.trains.WalkingStrategy;
+
 public class ShortestRouteStrategy implements WalkingStrategy {
 	
 	private final Map<Character, Integer> distances = new HashMap<Character, Integer>();
@@ -21,6 +23,7 @@ public class ShortestRouteStrategy implements WalkingStrategy {
 			distances.put(newTown, newDistance);
 			return true;
 		} else {
+			// don't walk, if route is longer
 			return false;
 		}
 	}

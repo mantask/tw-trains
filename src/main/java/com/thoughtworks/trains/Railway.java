@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import com.thoughtworks.trains.walking_strategies.WalkingStrategy;
 
 /**
  * Represents a track network (a directed weighted graph). 

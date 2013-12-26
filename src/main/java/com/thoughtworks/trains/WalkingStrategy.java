@@ -1,4 +1,4 @@
-package com.thoughtworks.trains.walking_strategies;
+package com.thoughtworks.trains;
 
 import java.util.Set;
 

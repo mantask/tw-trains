@@ -2,6 +2,8 @@ package com.thoughtworks.trains.walking_strategies;
 
 import java.util.Set;
 
+import com.thoughtworks.trains.WalkingStrategy;
+
 
 public class MaxTownsStrategy implements WalkingStrategy {
 	
