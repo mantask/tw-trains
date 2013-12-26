@@ -33,7 +33,7 @@ Sample input:
 Design of the application
 -------------------------
 	
-I was trying to balance between overengineering the solution and
+I was trying to balance between over engineering the solution and
 building enough abstractions to manage complexity and code 
 duplication. Thus I did not encapsulate edges, vertexes and paths 
 into separate data structures and kept it lightweight (chars and 
