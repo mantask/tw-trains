@@ -12,7 +12,7 @@ import com.thoughtworks.trains.walking_strategies.MaxRouteLengthStrategy;
 import com.thoughtworks.trains.walking_strategies.MaxTownsStrategy;
 import com.thoughtworks.trains.walking_strategies.ShortestRouteStrategy;
 
-public class RailwayWalkTest {
+public class RailwayWalkerTest {
 	
 	Railway railway() {
 		return RailwayFactory.parse("AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7");
@@ -21,14 +21,14 @@ public class RailwayWalkTest {
 	@Test
 	public void shoudFindNoRoute() {
 		Railway railway = RailwayFactory.parse("AB1, BC1, DE1");
-		Set<String> routes = railway.walk('A', 'D', new ShortestRouteStrategy());
+		Set<String> routes = new RailwayWalker(railway).walk('A', 'D', new ShortestRouteStrategy());
 		assertEquals(true, routes.isEmpty());
 	}
 	
 	@Test
 	public void shouldWalkShortestRouteAtoC() {
 		Railway railway = railway();
-		Set<String> routesActual = railway.walk('A', 'C', new ShortestRouteStrategy());
+		Set<String> routesActual = new RailwayWalker(railway).walk('A', 'C', new ShortestRouteStrategy());
 
 		Set<String> routesExpected = new HashSet<String>();
 		routesExpected.add("ABC");
@@ -40,7 +40,7 @@ public class RailwayWalkTest {
 	@Test
 	public void shouldWalkShortestRouteBtoB() {
 		Railway railway = railway();
-		Set<String> routesActual = railway.walk('B', 'B', new ShortestRouteStrategy());
+		Set<String> routesActual = new RailwayWalker(railway).walk('B', 'B', new ShortestRouteStrategy());
 
 		Set<String> routesExpected = new HashSet<String>();
 		routesExpected.add("BCEB");
@@ -52,7 +52,7 @@ public class RailwayWalkTest {
 	@Test
 	public void shouldWalkRoutesWithMaxStops() {
 		Railway railway = railway();
-		Set<String> routesActual = railway.walk('C', 'C', new MaxTownsStrategy(4));
+		Set<String> routesActual = new RailwayWalker(railway).walk('C', 'C', new MaxTownsStrategy(4));
 		
 		Set<String> routesExpected = new HashSet<String>();
 		routesExpected.add("CDC");
@@ -64,7 +64,7 @@ public class RailwayWalkTest {
 	@Test
 	public void shouldWalkRoutesWithExactStops() {
 		Railway railway = railway();
-		Set<String> routesActual = railway.walk('A', 'C', new ExactTownCountStrategy(5));
+		Set<String> routesActual = new RailwayWalker(railway).walk('A', 'C', new ExactTownCountStrategy(5));
 		
 		Set<String> routesExpected = new HashSet<String>();
 		routesExpected.add("ABCDC");
@@ -77,7 +77,7 @@ public class RailwayWalkTest {
 	@Test
 	public void shouldWalkRoutesWithinCertainDistance() {
 		Railway railway = railway();
-		Set<String> routesActual = railway.walk('C', 'C', new MaxRouteLengthStrategy(30));
+		Set<String> routesActual = new RailwayWalker(railway).walk('C', 'C', new MaxRouteLengthStrategy(30));
 		
 		Set<String> routesExpected = new HashSet<String>();
 		routesExpected.add("CDC");

@@ -2,7 +2,6 @@ package com.thoughtworks.trains;
 
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -52,7 +51,7 @@ public class Railway {
 	 * @param town
 	 * @return
 	 */
-	public Set<Character> tracks(char town) {
+	public Set<Character> tracksFrom(char town) {
 		if (!tracks.containsKey(town)) {
 			return Collections.emptySet();
 		}
@@ -89,36 +88,4 @@ public class Railway {
 		return totalDistance;
 	}
 	
-	/**
-	 * @param startTown
-	 * @param destTown
-	 * @param strategy
-	 */
-	public Set<String> walk(char startTown, char destTown, WalkingStrategy strategy) {
-		Set<String> routesFound = new HashSet<String>(0);
-		walk(String.valueOf(startTown), 0, destTown, strategy, routesFound);
-		return routesFound;
-	}
-
-	/**
-	 * @param currRoute
-	 * @param currDistance
-	 * @param destTown
-	 * @param strategy
-	 * @param routesFound
-	 */
-	private void walk(String currRoute, int currDistance, char destTown, WalkingStrategy strategy, Set<String> routesFound) {
-		char currTown = currRoute.charAt(currRoute.length() - 1);
-		if (currRoute.length() > 1 && currTown == destTown) {
-			strategy.handleDestination(currRoute, currDistance, routesFound);
-		}
-		for (char nextTown : tracks(currTown)) {
-			String nextRoute = currRoute + nextTown;
-			int nextDistance = currDistance + distance(currTown, nextTown);
-			if (strategy.continueTo(nextRoute, nextDistance)) {
-				walk(nextRoute, nextDistance, destTown, strategy, routesFound);
-			}
-		}
-	}
-
 }

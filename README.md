@@ -29,22 +29,27 @@ terminated with the end-of-line symbol.
 Design of the application
 -------------------------
 	
-I am taking a risk by slightly over engineering the solution. A 
-typical implementation during a coding contest would definitely
-be done in a more procedural way. Certain trade-offs in terms of
-performance were made to keep the design clean, e.g. instead of
-using a well-known Euler's algorithm for shortest path search, 
-the same depth-first search graph walking style is used.
+I was trying to balance between overengineering the solution and
+building enough abstractions to manage complexity and code 
+duplication. Thus I did not encapsulate edges, vertexes and paths 
+into separate data structures and kept it lightweight (chars and 
+strings).
+
+Certain trade-offs in terms of performance were made to keep the 
+design clean, e.g. instead of using a well-known Dijkstra's algorithm 
+for shortest path search, the same depth-first search graph walking 
+style is used.
 
 The main classes are:
 
 * `App`. It handles input / output and passes-on the calls to other
 classes to calculate the needed graph properties.
 * `Railway`. It represents a network of tracks. This class knows of
-towns and distances between them. It can walk from one town to the
-other in a "depth-first search" style.
+towns and distances between them. 
 * `RailwayFactory`.  It knows how to parse string representation of
 railway network and convert it into a `Railway` object.
+* `RailwayWalker`. It can walk through a railway network from one town 
+to the other in a "depth-first search" style.
 * `WalkingStrategy`. It abstracts away specific walking rules from 
 basic graph traversal.
 

@@ -30,8 +30,8 @@ public class RailwayTest {
 		assertEquals(new Integer(1), network.distance("AB"));
 		assertNull(network.distance('B', 'A'));
 		assertNull(network.distance("BA"));
-		assertEquals(new HashSet<Character>(Arrays.asList('B')), network.tracks('A'));
-		assertEquals(0, network.tracks('B').size());
+		assertEquals(new HashSet<Character>(Arrays.asList('B')), network.tracksFrom('A'));
+		assertEquals(0, network.tracksFrom('B').size());
 	}
 	
 	@Test(expected = IllegalArgumentException.class)

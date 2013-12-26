@@ -16,6 +16,7 @@ public class App {
 	public static void main(String[] args) {
 		try {
 			Railway railway = RailwayFactory.parse(console.readLine());
+			RailwayWalker walker = new RailwayWalker(railway);
 		
 			// 1. The distance of the route A-B-C.
 			writer.print(" 1: ");
@@ -41,19 +42,19 @@ public class App {
 			// In the sample data below, there are two such trips: C-D-C (2 stops). 
 			// and C-E-B-C (3 stops).
 			writer.print(" 6: ");
-			Set<String> routes6 = railway.walk('C', 'C', new MaxTownsStrategy(4));
+			Set<String> routes6 = walker.walk('C', 'C', new MaxTownsStrategy(4));
 			println(routes6.size());
 			
 			// 7. The number of trips starting at A and ending at C with exactly 4 stops.  
 			// In the sample data below, there are three such trips: A to C (via B,C,D); 
 			// A to C (via D,C,D); and A to C (via D,E,B).
 			writer.print(" 7: ");
-			Set<String> routes7 = railway.walk('A', 'C', new ExactTownCountStrategy(5));
+			Set<String> routes7 = walker.walk('A', 'C', new ExactTownCountStrategy(5));
 			println(routes7.size());
 	
 			// 8. The length of the shortest route (in terms of distance to travel) from A to C.
 			writer.print(" 8: ");
-			Set<String> routes8 = railway.walk('A', 'C', new ShortestRouteStrategy());
+			Set<String> routes8 = walker.walk('A', 'C', new ShortestRouteStrategy());
 			if (!routes8.isEmpty()) {
 				String route8 = routes8.iterator().next();
 				println(railway.distance(route8));
@@ -63,7 +64,7 @@ public class App {
 			
 			// 9. The length of the shortest route (in terms of distance to travel) from B to B.
 			writer.print(" 9: ");
-			Set<String> routes9 = railway.walk('B', 'B', new ShortestRouteStrategy());
+			Set<String> routes9 = walker.walk('B', 'B', new ShortestRouteStrategy());
 			if (!routes9.isEmpty()) {
 				String route9 = routes9.iterator().next();
 				println(railway.distance(route9));
@@ -76,7 +77,7 @@ public class App {
 			// CEBCEBCEBC.
 			writer.print("10: ");
 			MaxRouteLengthStrategy acc10 = new MaxRouteLengthStrategy(30);
-			Set<String> routes10 = railway.walk('C', 'C', acc10);
+			Set<String> routes10 = walker.walk('C', 'C', acc10);
 			println(routes10.size());
 			
 		} catch (Exception e) {
