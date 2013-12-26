@@ -91,4 +91,18 @@ public class RailwayWalkerTest {
 		assertEquals(routesExpected, routesActual);
 	}
 	
+	@Test
+	public void shouldFindNoShortestRoute() {
+		Railway railway = RailwayFactory.parse("AB1, BC1, CD1");
+		Set<String> routesActual = new RailwayWalker(railway).walk('D', 'A', new ShortestRouteStrategy());
+		assertEquals(true, routesActual.isEmpty());
+	}
+
+	@Test
+	public void shouldFindLargeNumberOfRoutes() {
+		Railway railway = RailwayFactory.parse("AB1, BC1, CA1");
+		Set<String> routesActual = new RailwayWalker(railway).walk('A', 'A', new MaxRouteLengthStrategy(1000));
+		assertEquals(333, routesActual.size());
+	}
+
 }

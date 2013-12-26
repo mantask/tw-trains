@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-
 /**
- * Represents a track network (a directed weighted graph). 
- * Knows of towns (vertexes), tracks (edges) and distances between vertexes (edge weights).
+ * Represents a railway network (a directed weighted graph). 
+ * Knows of towns (vertexes), tracks (edges) and distances 
+ * between vertexes (edge weights).
  */
 public class Railway {
 
@@ -25,9 +25,9 @@ public class Railway {
 			new HashMap<Character, Map<Character, Integer>>();
 	
 	/**
-	 * @param town1
-	 * @param town2
-	 * @param distance
+	 * @param town1 Source town.
+	 * @param town2 Destination town.
+	 * @param distance The length of the track between towns. Must be >0.
 	 * @throws IllegalArgumentException If cannot add a track to the network.
 	 */
 	public Railway addTrack(char town1, char town2, int distance) {
@@ -48,8 +48,8 @@ public class Railway {
 	}
 	
 	/**
-	 * @param town
-	 * @return
+	 * @param town The start of the tracks.
+	 * @return A set of tracks that start at given town 
 	 */
 	public Set<Character> tracksFrom(char town) {
 		if (!tracks.containsKey(town)) {
@@ -59,9 +59,9 @@ public class Railway {
 	}
 	
 	/**
-	 * @param town1
-	 * @param town2
-	 * @return
+	 * @param town1 Source town.
+	 * @param town2 Destination town.
+	 * @return A length of the track between towns, or null if no track is in the railway network.
 	 */
 	public Integer distance(char town1, char town2) {
 		if (!tracks.containsKey(town1) || !tracks.get(town1).containsKey(town2)) {
@@ -71,8 +71,8 @@ public class Railway {
 	}
 	
 	/**
-	 * @param route
-	 * @return
+	 * @param route List of towns.
+	 * @return Sum of length of all the tracks between each town pair. Or null if no route exists in railway network.
 	 */
 	public Integer distance(String route) {
 		int totalDistance = 0;

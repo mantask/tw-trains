@@ -9,6 +9,10 @@ import com.thoughtworks.trains.walking_strategies.MaxRouteLengthStrategy;
 import com.thoughtworks.trains.walking_strategies.MaxTownsStrategy;
 import com.thoughtworks.trains.walking_strategies.ShortestRouteStrategy;
 
+/**
+ * The main application. Reads the railway network from standard input, 
+ * calculates and prints results to standard output.
+ */
 public class App {
 	private static Console console = System.console();
 	private static PrintWriter writer = console.writer();

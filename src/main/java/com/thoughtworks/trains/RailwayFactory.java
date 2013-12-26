@@ -11,7 +11,8 @@ public class RailwayFactory {
 	 * distance of 5 is represented as AB5. Sample input:
 	 * AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7
 	 * 
-	 * Anything but alphanumerics shall be treated as separators.
+	 * Space symbols and comma are expected to separate tracks. Otherwise the 
+	 * method will fail.
 	 * 
 	 * @param input String representation of train network.
 	 * @return Parsed train network object.

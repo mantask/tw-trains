@@ -24,6 +24,10 @@ from files, use input redirection. Make sure the input data is
 terminated with the end-of-line symbol.
 
 	$ java -jar target/trains-FINAL.jar < trains.in > trains.out
+	
+Sample input:
+
+	AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7
 
 
 Design of the application
