@@ -54,8 +54,9 @@ towns and distances between them.
 railway network and convert it into a `Railway` object.
 * `RailwayWalker`. It can walk through a railway network from one town 
 to the other in a "depth-first search" style.
-* `WalkingStrategy`. It abstracts away specific walking rules from 
+* `RailwayWalkingStrategy`. It abstracts away specific walking rules from 
 basic graph traversal.
+* `RailwayMetrics`. An application specific metrics calculator for railway.
 
 More detailed descriptions of the design decisions can be found 
 inside the source code.
