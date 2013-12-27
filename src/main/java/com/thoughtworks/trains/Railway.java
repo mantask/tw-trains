@@ -94,7 +94,7 @@ public class Railway {
 	 * Track not supported by this Railway network.
 	 */
 	@SuppressWarnings("serial")
-	public class IllegalTrackException extends RuntimeException {
+	public static class IllegalTrackException extends RuntimeException {
 		
 		public IllegalTrackException(String msg) {
 			super(msg);
