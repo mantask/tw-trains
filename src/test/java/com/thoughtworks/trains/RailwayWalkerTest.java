@@ -1,6 +1,6 @@
 package com.thoughtworks.trains;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,7 +22,7 @@ public class RailwayWalkerTest {
 	public void shoudFindNoRoute() {
 		Railway railway = RailwayFactory.parse("AB1, BC1, DE1");
 		Set<String> routes = new RailwayWalker(railway).walk('A', 'D', new ShortestRouteStrategy());
-		assertEquals(true, routes.isEmpty());
+		assertTrue(routes.isEmpty());
 	}
 	
 	@Test
@@ -95,7 +95,7 @@ public class RailwayWalkerTest {
 	public void shouldFindNoShortestRoute() {
 		Railway railway = RailwayFactory.parse("AB1, BC1, CD1");
 		Set<String> routesActual = new RailwayWalker(railway).walk('D', 'A', new ShortestRouteStrategy());
-		assertEquals(true, routesActual.isEmpty());
+		assertTrue(routesActual.isEmpty());
 	}
 
 	@Test

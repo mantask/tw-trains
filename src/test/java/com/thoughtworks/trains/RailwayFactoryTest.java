@@ -4,6 +4,9 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import com.thoughtworks.trains.Railway.IllegalTrackException;
+import com.thoughtworks.trains.RailwayFactory.RailwayParseException;
+
 public class RailwayFactoryTest {
 
 	@Test
@@ -23,17 +26,17 @@ public class RailwayFactoryTest {
 		assertEquals(new Integer(1), network.distance('A', 'B'));
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = RailwayParseException.class)
 	public void shouldNotParseNegativeDistance() {
 		RailwayFactory.parse("AB-1");
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = IllegalTrackException.class)
 	public void shouldNotParseZeroDistance() {
 		RailwayFactory.parse("AB0");
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = RailwayParseException.class)
 	public void shouldNotParseNull() {
 		RailwayFactory.parse(null);
 	}
@@ -52,27 +55,27 @@ public class RailwayFactoryTest {
 		assertEquals(new Integer(2), network.distance('C', 'D'));
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = RailwayParseException.class)
 	public void shouldNotParseTrackWithoutDistance() {
 		RailwayFactory.parse("AB");
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = RailwayParseException.class)
 	public void shouldNotParseIncompleteTrack() {
 		RailwayFactory.parse("A1");
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = RailwayParseException.class)
 	public void shouldNotParseTrackWithTooManyTowns() {
 		RailwayFactory.parse("ABC1");
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = RailwayParseException.class)
 	public void shouldNotParseTracksWithoutSeparators() {
 		RailwayFactory.parse("AB1CD2");
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = RailwayParseException.class)
 	public void shouldNotParseLargeDistance() {
 		RailwayFactory.parse("AB12345678901234567890");
 	}

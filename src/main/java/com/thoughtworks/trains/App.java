@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import com.thoughtworks.trains.Railway.IllegalTrackException;
+import com.thoughtworks.trains.RailwayFactory.RailwayParseException;
+
 /**
  * The main application. Reads the railway network from standard input, 
  * calculates and prints results to standard output.
@@ -48,9 +51,21 @@ public class App {
 			System.out.print("10: ");
 			println(metrics.routeCountCtoCWithLengthLessThan30());
 			
-		} catch (Exception e) {
+		} catch (IOException e) {
+			System.err.print("Failed to read input data: ");
 			System.err.println(e.getMessage());
 			System.exit(-1);
+			
+		} catch (RailwayParseException e) {
+			System.err.print("Failed to parse input data: ");
+			System.err.println(e.getMessage());
+			System.exit(-1);
+			
+		} catch (IllegalTrackException e) {
+			System.err.print("Does not support this type of track: ");
+			System.err.println(e.getMessage());
+			System.exit(-1);
+			
 		} finally {
 			try {
 				if (reader != null) reader.close();

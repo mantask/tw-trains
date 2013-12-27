@@ -8,6 +8,8 @@ import java.util.HashSet;
 
 import org.junit.Test;
 
+import com.thoughtworks.trains.Railway.IllegalTrackException;
+
 public class RailwayTest {
 	
 	Railway railway() {
@@ -34,17 +36,17 @@ public class RailwayTest {
 		assertEquals(0, network.tracksFrom('B').size());
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = IllegalTrackException.class)
 	public void shouldNotAddTrackWithLoop() {
 		new Railway().addTrack('A', 'A', 1);
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = IllegalTrackException.class)
 	public void shouldNotAddTrackWithZeroDistance() {
 		new Railway().addTrack('A', 'B', 0);
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = IllegalTrackException.class)
 	public void shouldNotAddSameTrackTwice() {
 		new Railway()
 				.addTrack('A', 'B', 1)

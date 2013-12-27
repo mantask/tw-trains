@@ -32,16 +32,16 @@ public class Railway {
 	 */
 	public Railway addTrack(char town1, char town2, int distance) {
 		if (town1 == town2) {
-			throw new IllegalArgumentException("Starting and ending town cannot be the same!");
+			throw new IllegalTrackException("Starting and ending town cannot be the same: " + town1 + town2 + distance);
 		}
 		if (distance <= 0) {
-			throw new IllegalArgumentException("Distance between two towns must be a positive integer!");
+			throw new IllegalTrackException("Distance between two towns must be a positive integer: " + town1 + town2 + distance);
 		}
 		if (!tracks.containsKey(town1)) {
 			tracks.put(town1, new HashMap<Character, Integer>());
 		}
 		if (tracks.get(town1).containsKey(town2)) {
-			throw new IllegalArgumentException("A given track cannot appear more than once!");
+			throw new IllegalTrackException("A given track cannot appear more than once: " + town1 + town2 + distance);
 		}
 		tracks.get(town1).put(town2, distance);
 		return this;
@@ -86,6 +86,20 @@ public class Railway {
 			totalDistance += distance;
 		}
 		return totalDistance;
+	}
+	
+	// --- Exceptions ---------------------------------------------------
+	
+	/**
+	 * Track not supported by this Railway network.
+	 */
+	@SuppressWarnings("serial")
+	public class IllegalTrackException extends RuntimeException {
+		
+		public IllegalTrackException(String msg) {
+			super(msg);
+		}
+		
 	}
 	
 }

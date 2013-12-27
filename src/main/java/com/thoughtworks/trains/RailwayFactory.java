@@ -16,11 +16,11 @@ public class RailwayFactory {
 	 * 
 	 * @param input String representation of train network.
 	 * @return Parsed train network object.
-	 * @throws IllegalArgumentException When cannot parse the given string.
+	 * @throws RailwayParseException When cannot parse the given string.
 	 */
 	public static Railway parse(String input) {
 		if (input == null) {
-			throw new IllegalArgumentException("Not null expected.");
+			throw new RailwayParseException("Not null expected.");
 		}
 		Railway railway = new Railway();
 		String[] tracks = input.toUpperCase().split(",");
@@ -29,8 +29,8 @@ public class RailwayFactory {
 			if (track == "") {
 				continue;
 			}
-			if (!track.matches("^[A-Z]{2}[0-9]+$")) {
-				throw new IllegalArgumentException("Expecting a list of tracks in format {char}{char}{int} separated by comma.");
+			if (!track.matches("^[A-Z]{2}[0-9]{1,9}$")) {
+				throw new RailwayParseException("Expecting a list of tracks in format {char}{char}{int} separated by comma.");
 			}
 			char town1 = track.charAt(0);
 			char town2 = track.charAt(1);
@@ -38,6 +38,20 @@ public class RailwayFactory {
 			railway.addTrack(town1, town2, distance);
 		}
 		return railway;
+	}
+	
+	// --- Exceptions ---------------------------------------------------
+	
+	/**
+	 * Cannot recognize input.
+	 */
+	@SuppressWarnings("serial")
+	public static class RailwayParseException extends RuntimeException {
+		
+		public RailwayParseException(String msg) {
+			super(msg);
+		}
+		
 	}
 
 }
