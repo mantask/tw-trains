@@ -14,8 +14,8 @@ public class RailwayMetrics {
 	private final Railway railway;
 	private final RailwayWalker walker;
 
-	public RailwayMetrics(String input) {
-		this.railway = RailwayFactory.parse(input);
+	public RailwayMetrics(Railway railway) {
+		this.railway = railway;
 		this.walker = new RailwayWalker(railway);
 	}
 	

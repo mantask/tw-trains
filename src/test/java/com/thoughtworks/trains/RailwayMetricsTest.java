@@ -9,7 +9,8 @@ public class RailwayMetricsTest {
 
 	@Test
 	public void shouldHandleSampleRailwayMetrics() throws Exception {
-		RailwayMetrics metrics = new RailwayMetrics("AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7");
+		Railway railway = RailwayFactory.parse("AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7");
+		RailwayMetrics metrics = new RailwayMetrics(railway);
 		assertEquals(new Integer(9), metrics.distanceABC());
 		assertEquals(new Integer(5), metrics.distanceAD());
 		assertEquals(new Integer(13), metrics.distanceADC());
@@ -24,7 +25,8 @@ public class RailwayMetricsTest {
 	
 	@Test
 	public void shouldHandleEmptyRailway() throws Exception {
-		RailwayMetrics metrics = new RailwayMetrics("");
+		Railway railway = RailwayFactory.parse("");
+		RailwayMetrics metrics = new RailwayMetrics(railway);
 		assertNull(metrics.distanceABC());
 		assertNull(metrics.distanceAD());
 		assertNull(metrics.distanceADC());
@@ -39,7 +41,8 @@ public class RailwayMetricsTest {
 
 	@Test
 	public void shouldHandleSparseRailway() throws Exception {
-		RailwayMetrics metrics = new RailwayMetrics("AB1, CD1, DE1, EF1");
+		Railway railway = RailwayFactory.parse("AB1, CD1, DE1, EF1");
+		RailwayMetrics metrics = new RailwayMetrics(railway);
 		assertNull(metrics.distanceABC());
 		assertNull(metrics.distanceAD());
 		assertNull(metrics.distanceADC());
@@ -54,7 +57,8 @@ public class RailwayMetricsTest {
 
 	@Test
 	public void shouldHandleRailwayWithLoop() throws Exception {
-		RailwayMetrics metrics = new RailwayMetrics("AB1, BC1, CA1");
+		Railway railway = RailwayFactory.parse("AB1, BC1, CA1");
+		RailwayMetrics metrics = new RailwayMetrics(railway);
 		assertEquals(new Integer(2), metrics.distanceABC());
 		assertNull(metrics.distanceAD());
 		assertNull(metrics.distanceADC());

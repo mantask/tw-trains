@@ -15,7 +15,8 @@ public class App {
 		try {
 			reader = new BufferedReader(new InputStreamReader(System.in));
 			
-			RailwayMetrics metrics = new RailwayMetrics(reader.readLine());
+			Railway railway = RailwayFactory.parse(reader.readLine());
+			RailwayMetrics metrics = new RailwayMetrics(railway);
 		
 			System.out.print(" 1: ");
 			println(metrics.distanceABC());
